@@ -55,7 +55,7 @@ export function PreviewToolbar({
         <span className="hidden text-sm font-semibold sm:inline">Back</span>
       </Link>
       <div className="flex min-w-0 flex-1 items-center gap-2 text-sm">
-        <h1 className="truncate font-bold tracking-[-0.02em]" title={title}>{title}</h1>
+        <h1 className="truncate font-bold tracking-[-0.02em] text-[#171717]" title={title}>{title}</h1>
         {sourceLabel ? (
           <span className="hidden shrink-0 text-[10px] font-black uppercase tracking-[0.14em] text-[#9a9da3] lg:inline">
             {sourceLabel}
