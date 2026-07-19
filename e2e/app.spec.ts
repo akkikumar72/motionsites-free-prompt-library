@@ -105,6 +105,19 @@ test("curated collections remain usable on mobile without horizontal overflow", 
   expect(dimensions.bodyWidth).toBeLessThanOrEqual(dimensions.viewportWidth + 1);
 });
 
+test("mobile navigation opens and closes cleanly", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  await page.getByRole("button", { name: /Open navigation/i }).click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.getByText("Explore the library")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Backgrounds Free" })).toBeVisible();
+
+  await page.getByRole("button", { name: /Close navigation/i }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+});
+
 test("curated collections keep the liro.prompt four-column rhythm", async ({ page }) => {
   await page.goto("/landing-pages");
 
