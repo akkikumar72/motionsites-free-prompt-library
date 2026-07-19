@@ -22,8 +22,7 @@ export function MediaFrame({
 }) {
   const background = fallbackGradients[item.sortOrder % fallbackGradients.length];
   const accent = fallbackAccents[item.sortOrder % fallbackAccents.length];
-  const localPoster = item.slug === "260-celestia-hero" ? "/assets/celestia-hero-poster.png" : null;
-  const posterUrl = item.posterUrl || localPoster;
+  const posterUrl = item.posterUrl;
 
   return (
     <div className={`relative isolate overflow-hidden bg-[#202020] ${className}`}>
@@ -50,7 +49,7 @@ export function MediaFrame({
             event.currentTarget.style.display = "none";
           }}
         />
-      ) : !localPoster && item.mediaType === "video" && item.mediaUrl?.endsWith(".mp4") ? (
+      ) : item.mediaType === "video" && item.mediaUrl?.endsWith(".mp4") ? (
         <video
           src={item.mediaUrl}
           className="motion-media-drift absolute inset-0 z-20 h-full w-full object-cover object-top"

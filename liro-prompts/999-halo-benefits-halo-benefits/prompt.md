@@ -27,12 +27,12 @@ The liro.prompt `get-prompt` endpoint returned `paid_only` for this prompt. This
 
 ## Reconstructed Working Prompt
 
-This is not the original paid prompt. It is a practical reconstruction from the public title, category, and preview media metadata.
+This is not the original paid prompt. It is a practical reconstruction from the public MotionSites title, category, and preview media metadata.
 
 ```
 Build Prompt: Halo Benefits
 
-Create a premium AI website hero section inspired by the public liro.prompt preview for "Halo Benefits". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
+Create a premium AI website hero section inspired by the public MotionSites preview for "Halo Benefits". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
 
 Reference input
 - Prompt ID: halo-benefits
@@ -41,7 +41,7 @@ Reference input
 - Visual reference: Use the public preview video as the primary visual reference and, when building a browser prototype, as the full-bleed hero background: https://stream.mux.com/0001BkeTZ2PCFjJ01xi00dg02DGT6Tlrio00acdNUMgA00x3IU.m3u8
 
 Core direction
-Build a polished, production-grade hero experience for Why Us. The design should feel like a premium liro.prompt prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
+Build a polished, production-grade hero experience for Why Us. The design should feel like a premium AI website prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
 
 Tech stack
 - React 18, Vite-compatible structure, Tailwind CSS, Framer Motion.
@@ -60,7 +60,7 @@ Visual system
 
 Copy
 - H1: "Halo Benefits with premium motion and clarity"
-- Subheading: "A polished liro.prompt-style experience with high contrast, refined layout, and conversion-ready sections."
+- Subheading: "A polished MotionSites-style experience with high contrast, refined layout, and conversion-ready sections."
 - Primary CTA: "Start now"
 - Secondary CTA: "View preview"
 - Badge: "Premium Why Us"
@@ -97,7 +97,7 @@ Avoid
 - Do not add irrelevant characters or random mascots.
 
 Quality bar
-The final result should look like a premium AI-generated website prompt from liro.prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.
+The final result should look like a premium AI-generated website prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.
 ```
 
 <!-- RECONSTRUCTED_WORKING_PROMPT_END -->

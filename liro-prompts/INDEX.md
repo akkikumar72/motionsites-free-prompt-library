@@ -276,6 +276,6 @@ This archive was built from the live liro.prompt catalog metadata and the same `
 - Working prompt files: 253
 - Original fetched working prompts: 89
 - Reconstructed working prompts for paid-only items: 164
-- Important: reconstructed prompts are usable approximations, not the original paid liro.prompt prompt text.
+- Important: reconstructed prompts are usable approximations, not the original paid MotionSites prompt text.
 
 <!-- RECONSTRUCTED_WORKING_PROMPT_END -->

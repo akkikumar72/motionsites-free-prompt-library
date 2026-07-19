@@ -13,14 +13,26 @@ const navItems = [
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const isPreviewRoute = pathname.startsWith("/preview/") || pathname.startsWith("/backgrounds/");
 
   return (
     <div className={isPreviewRoute ? "min-h-screen overflow-x-clip bg-[#f4f4f1]" : "min-h-screen overflow-x-clip"}>
-      {!isPreviewRoute ? <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/[0.06] bg-[#171717]/88 shadow-[0_14px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl">
-        <nav className="page-shell flex h-20 items-center justify-between gap-4">
+      {!isPreviewRoute ? <SiteHeader /> : null}
+
+      <main className={isPreviewRoute ? "min-h-screen" : "pt-[84px]"}>{children}</main>
+      {!isPreviewRoute ? <Footer /> : null}
+    </div>
+  );
+}
+
+function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <>
+      <header className="fixed left-0 right-0 top-0 z-40 border-t-2 border-[#b8a5ff] bg-[#141516]/96 backdrop-blur-xl">
+        <nav className="page-shell flex h-[84px] items-center justify-between gap-5">
           <NavLink
             to="/"
             className="group flex min-w-0 items-center gap-3 rounded-2xl px-1 py-2 transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
@@ -36,33 +48,33 @@ export function AppShell({ children }: { children: ReactNode }) {
           </NavLink>
 
           <div className="hidden flex-1 justify-center lg:flex">
-            <div className="flex items-center gap-1 rounded-[18px] border border-white/10 bg-white/[0.035] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `inline-flex min-h-11 items-center gap-1.5 rounded-[13px] px-4 text-sm font-semibold transition-[background-color,color,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#202020] ${
-                    isActive ? "bg-white text-[#171717] shadow-[0_8px_20px_rgba(0,0,0,0.16)]" : "text-[#ababab] hover:bg-white/[0.06] hover:text-white"
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            <div className="flex items-center gap-1">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `relative inline-flex h-12 items-center px-4 text-[15px] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141516] ${
+                      isActive ? "font-bold text-white" : "font-semibold text-[#a8a8a8] hover:text-white"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
             </div>
           </div>
 
-          <div className="hidden items-center gap-2 xl:flex">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-3.5 py-2 text-[11px] font-semibold text-[#d4d4d4]">
+          <div className="hidden items-center gap-5 lg:flex">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#a8a8a8]">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden="true" />
               {catalogSummary.total} prompts
             </span>
             <NavLink
               to="/landing-pages"
-              className="inline-flex h-11 items-center gap-2 rounded-[13px] bg-white px-4 text-sm font-bold text-[#171717] shadow-[0_12px_32px_rgba(219,234,254,0.12)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
+              className="inline-flex h-11 items-center gap-2 rounded-[14px] border border-white/15 bg-white/[0.08] px-4 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-colors hover:border-white/25 hover:bg-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141516]"
             >
-              Browse
+              Explore
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </NavLink>
           </div>
@@ -76,9 +88,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
         </nav>
-      </header> : null}
+      </header>
 
-      {!isPreviewRoute && menuOpen ? (
+      {menuOpen ? (
         <div className="fixed inset-0 z-50 bg-[#171717]/96 backdrop-blur-xl lg:hidden" role="dialog" aria-modal="true">
           <div className="page-shell flex h-20 items-center justify-between">
             <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 text-xl font-black lowercase tracking-[-0.05em] text-white">
@@ -118,10 +130,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       ) : null}
-
-      <main className={isPreviewRoute ? "min-h-screen" : "pt-20"}>{children}</main>
-      {!isPreviewRoute ? <Footer /> : null}
-    </div>
+    </>
   );
 }
 

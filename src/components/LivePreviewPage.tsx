@@ -11,7 +11,6 @@ export function LivePreviewPage() {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    if (window.navigator.userAgent.toLowerCase().includes("jsdom")) return;
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     setShowPrompt(false);
   }, [slug]);

@@ -23,21 +23,21 @@ The liro.prompt `get-prompt` endpoint returned `paid_only` for this prompt. This
 
 ## Reconstructed Working Prompt
 
-This is not the original paid prompt. It is a practical reconstruction from the public title, category, and preview media metadata.
+This is not the original paid prompt. It is a practical reconstruction from the public MotionSites title, category, and preview media metadata.
 
 ```
 Build Prompt: Apex SaaS
 
-Create a premium AI website hero section inspired by the public liro.prompt preview for "Apex SaaS". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
+Create a premium AI website hero section inspired by the public MotionSites preview for "Apex SaaS". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
 
 Reference input
 - Prompt ID: apex-saas-hero
 - Category: SaaS
 - Page type: hero
-- Visual reference: No public media URL was exposed in the metadata. Reconstruct from the public card title, category, and liro.prompt visual language.
+- Visual reference: No public media URL was exposed in the metadata. Reconstruct from the public card title, category, and source visual language.
 
 Core direction
-Build a polished, production-grade hero experience for fintech, payments, and financial operations. The design should feel like a premium liro.prompt prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
+Build a polished, production-grade hero experience for fintech, payments, and financial operations. The design should feel like a premium AI website prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
 
 Tech stack
 - React 18, Vite-compatible structure, Tailwind CSS, Framer Motion.
@@ -93,7 +93,7 @@ Avoid
 - Do not add irrelevant characters or random mascots.
 
 Quality bar
-The final result should look like a premium AI-generated website prompt from liro.prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.
+The final result should look like a premium AI-generated website prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.
 ```
 
 <!-- RECONSTRUCTED_WORKING_PROMPT_END -->

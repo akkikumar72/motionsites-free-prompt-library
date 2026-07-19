@@ -16,7 +16,6 @@ export function BackgroundPreviewPage() {
   const item = findCatalogItemBySlug(slug);
 
   useEffect(() => {
-    if (window.navigator.userAgent.toLowerCase().includes("jsdom")) return;
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [slug]);
 
@@ -36,8 +35,7 @@ export function BackgroundPreviewPage() {
   }
 
   const sourceMedia = item.mediaUrl || item.posterUrl || item.animatedUrl;
-  const localPoster = item.slug === "260-celestia-hero" ? "/assets/celestia-hero-poster.png" : null;
-  const poster = item.posterUrl || localPoster || item.animatedUrl;
+  const poster = item.posterUrl || item.animatedUrl;
   const canPlayVideo = item.mediaType === "video" && Boolean(item.mediaUrl?.toLowerCase().endsWith(".mp4"));
   const fallback = fallbackBackgrounds[item.sortOrder % fallbackBackgrounds.length];
 
@@ -49,7 +47,7 @@ export function BackgroundPreviewPage() {
         title={item.title}
         sourceLabel={`${item.mediaType} background`}
         sourceMedia={sourceMedia}
-        copyText={sourceMedia || ""}
+        copyText={sourceMedia}
         copyLabel="Copy URL"
       />
       <main className="preview-stage relative min-h-[calc(100dvh-88px)] overflow-hidden bg-[#0b0b0b] pt-[88px]">

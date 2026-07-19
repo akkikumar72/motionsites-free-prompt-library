@@ -4,6 +4,8 @@ A polished, free prompt catalog for liro.prompt. It turns the local `liro-prompt
 
 > Reconstructed prompts are practical working recreations from public metadata/media, not original paid prompt text.
 
+> **Source provenance:** Original prompt records were fetched from the MotionSites `get-prompt` endpoint during the captured research session. Reconstructed records are clearly marked approximations based on public titles, categories, and preview references. This catalogue is an independent project and does not claim affiliation with MotionSites. Review the source product's terms and asset rights before redistributing the archive or externally hosted media.
+
 ![Home page](docs/screenshots/home.png)
 
 ## Features
@@ -21,7 +23,7 @@ A polished, free prompt catalog for liro.prompt. It turns the local `liro-prompt
 
 ### Catalog
 
-![Catalog grid](docs/screenshots/catalog.png)
+![Catalog grid](docs/screenshots/catalog.webp)
 
 ### Prompt Drawer
 

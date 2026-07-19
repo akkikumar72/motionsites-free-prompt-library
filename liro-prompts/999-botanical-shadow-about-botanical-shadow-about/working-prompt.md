@@ -1,6 +1,6 @@
 # Reconstructed Working Prompt: Botanical Shadow About
 
-This is not the original paid prompt. It is a practical reconstruction from the public title, category, and preview media metadata.
+This is not the original paid prompt. It is a practical reconstruction from the public MotionSites title, category, and preview media metadata.
 
 ## Metadata
 
@@ -16,7 +16,7 @@ This is not the original paid prompt. It is a practical reconstruction from the 
 ```
 Build Prompt: Botanical Shadow About
 
-Create a premium AI website hero section inspired by the public liro.prompt preview for "Botanical Shadow About". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
+Create a premium AI website hero section inspired by the public MotionSites preview for "Botanical Shadow About". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
 
 Reference input
 - Prompt ID: botanical-shadow-about
@@ -25,7 +25,7 @@ Reference input
 - Visual reference: Use the public preview video as the primary visual reference and, when building a browser prototype, as the full-bleed hero background: https://stream.mux.com/Mkxpw3It0201x7xY6iuhx7o7Yz2f028rYlbDOnxa0202kQcM.m3u8
 
 Core direction
-Build a polished, production-grade hero experience for luxury commerce and premium lifestyle. The design should feel like a premium liro.prompt prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
+Build a polished, production-grade hero experience for luxury commerce and premium lifestyle. The design should feel like a premium AI website prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
 
 Tech stack
 - React 18, Vite-compatible structure, Tailwind CSS, Framer Motion.
@@ -81,5 +81,5 @@ Avoid
 - Do not add irrelevant characters or random mascots.
 
 Quality bar
-The final result should look like a premium AI-generated website prompt from liro.prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.
+The final result should look like a premium AI-generated website prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.
 ```

@@ -6,6 +6,13 @@ import { MediaFrame } from "./MediaFrame";
 
 type CollectionLayout = "feature-rail" | "editorial-split" | "bento" | "experimental";
 
+const layoutTileClasses: Record<CollectionLayout, readonly string[]> = {
+  "feature-rail": ["lg:col-span-2 lg:row-span-2", "", "", "", "", ""],
+  "editorial-split": ["lg:col-span-2 lg:row-span-2", "", "lg:row-span-2", "", "", ""],
+  bento: ["lg:col-span-2 lg:row-span-2", "", "", "lg:col-span-2", "", ""],
+  experimental: ["lg:col-span-5 lg:row-span-2", "lg:col-span-3", "lg:col-span-4", "lg:col-span-4", "lg:col-span-3", "lg:col-span-5"],
+};
+
 type CollectionDefinition = {
   id: string;
   eyebrow: string;
@@ -148,10 +155,11 @@ function CollectionGrid({
 }) {
   return (
     <div className="curated-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-layout={layout}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <CollectionTile
           key={item.slug}
           item={item}
+          className={layoutTileClasses[layout][index] || ""}
         />
       ))}
     </div>

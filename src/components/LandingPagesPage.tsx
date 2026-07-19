@@ -68,7 +68,7 @@ export function LandingPagesPage() {
           </label>
         </div>
 
-        <CuratedCollections items={filtered} />
+        {page === 1 && !query && activeCategory === "All" ? <CuratedCollections items={filtered} /> : null}
 
         <PromptGrid items={visible} />
 

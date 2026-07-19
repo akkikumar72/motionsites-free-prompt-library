@@ -19,7 +19,7 @@ export function PreviewToolbar({
   title: string;
   sourceLabel?: string;
   sourceMedia?: string | null;
-  copyText: string;
+  copyText?: string | null;
   copyLabel: string;
   children?: ReactNode;
 }) {
@@ -85,7 +85,7 @@ export function PreviewToolbar({
           </a>
         ) : null}
         {children}
-        <CopyButton text={copyText} label={copyLabel} variant="toolbar" />
+        {copyText ? <CopyButton text={copyText} label={copyLabel} variant="toolbar" /> : null}
       </div>
     </header>
   );

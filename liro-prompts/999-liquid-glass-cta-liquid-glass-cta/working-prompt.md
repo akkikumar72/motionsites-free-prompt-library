@@ -1,6 +1,6 @@
 # Working Prompt: Liquid Glass CTA
 
-This is the original full prompt returned by the liro.prompt `get-prompt` endpoint in the current session.
+This is the original full prompt returned by the MotionSites `get-prompt` endpoint in the captured session.
 
 ## Metadata
 

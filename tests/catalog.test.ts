@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { catalogItems, catalogSummary } from "../src/data/prompts.generated";
-import { canLivePreview, filterCatalog, findCatalogItemBySlug, getBackgroundItems, getCategoryStats } from "../src/lib/catalog";
+import { filterCatalog, findCatalogItemBySlug, getBackgroundItems, getCategoryStats } from "../src/lib/catalog";
 import { buildLivePreviewContent } from "../src/lib/livePreview";
 
 describe("catalog data", () => {
@@ -23,15 +23,14 @@ describe("catalog data", () => {
     expect(getBackgroundItems(catalogItems).length).toBe(catalogSummary.media.video + catalogSummary.media.image);
   });
 
-  it("enables live previews for every free working prompt", () => {
+  it("resolves every catalog item to a prompt-driven preview route", () => {
     const original = catalogItems.find((item) => item.sourceMode === "original");
     const reconstructed = catalogItems.find((item) => item.sourceMode === "reconstructed");
 
     expect(original).toBeDefined();
     expect(reconstructed).toBeDefined();
-    expect(canLivePreview(original!)).toBe(true);
-    expect(canLivePreview(reconstructed!)).toBe(true);
-    expect(catalogItems.every((item) => canLivePreview(item))).toBe(true);
+    expect(catalogItems.every((item) => item.prompt.trim().length > 0)).toBe(true);
+    expect(catalogItems.every((item) => findCatalogItemBySlug(item.slug)?.id === item.id)).toBe(true);
     expect(findCatalogItemBySlug(original!.slug)?.id).toBe(original!.id);
   });
 

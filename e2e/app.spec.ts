@@ -37,8 +37,6 @@ test("original free prompts open live preview routes", async ({ page, context })
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
   await page.goto("/landing-pages");
-  await page.getByPlaceholder("Search prompts").fill("bold studio");
-  await expect(page.getByText("Bold Studio").first()).toBeVisible();
   const editorialCollection = page.getByTestId("curated-editorial-studios");
   const boldStudioPreview = editorialCollection.getByRole("link", { name: "Preview Bold Studio" });
   await expect(boldStudioPreview).toHaveCount(1);
@@ -50,6 +48,14 @@ test("original free prompts open live preview routes", async ({ page, context })
   await expect(page.getByText(/VANGUARD/i).first()).toBeVisible();
   await page.getByRole("button", { name: /Copy Prompt/i }).click();
   await expect(page.getByRole("button", { name: /Copied/i })).toBeVisible();
+});
+
+test("search results do not render curated collections", async ({ page }) => {
+  await page.goto("/landing-pages");
+  await page.getByPlaceholder("Search prompts").fill("solar energy hero");
+
+  await expect(page.getByText("Solar Energy Hero").first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Cinematic Journeys/i })).toHaveCount(0);
 });
 
 test("prompt-specific original previews render their own designs", async ({ page }) => {
@@ -118,18 +124,21 @@ test("mobile navigation opens and closes cleanly", async ({ page }) => {
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
 
-test("curated collections keep the liro.prompt four-column rhythm", async ({ page }) => {
+test("curated collections use their declared layout rhythm", async ({ page }) => {
   await page.goto("/landing-pages");
 
   const gridLayout = await page.evaluate(() => ({
-    columns: Array.from(document.querySelectorAll(".curated-grid")).map(
-      (grid) => getComputedStyle(grid).gridTemplateColumns.split(" ").length,
-    ),
+    grids: Array.from(document.querySelectorAll<HTMLElement>(".curated-grid")).map((grid) => ({
+      layout: grid.dataset.layout,
+      columns: getComputedStyle(grid).gridTemplateColumns.split(" ").length,
+    })),
     viewportWidth: window.innerWidth,
   }));
 
-  const expectedColumns = gridLayout.viewportWidth >= 1024 ? 4 : 1;
-  expect(gridLayout.columns).toEqual([expectedColumns, expectedColumns, expectedColumns, expectedColumns]);
+  expect(gridLayout.grids.map(({ layout }) => layout)).toEqual(["feature-rail", "editorial-split", "bento", "experimental"]);
+  expect(gridLayout.grids.map(({ columns }) => columns)).toEqual(
+    gridLayout.viewportWidth >= 1024 ? [3, 3, 4, 12] : [1, 1, 1, 1],
+  );
 });
 
 test("Celestia uses a local poster when its source video is unavailable", async ({ page }) => {
@@ -141,5 +150,5 @@ test("Celestia uses a local poster when its source video is unavailable", async 
 
   const poster = celestiaCard.locator("img");
   await expect(poster).toHaveCount(1);
-  await expect(poster).toHaveAttribute("src", "/assets/celestia-hero-poster.png");
+  await expect(poster).toHaveAttribute("src", "/assets/celestia-hero-poster.webp");
 });

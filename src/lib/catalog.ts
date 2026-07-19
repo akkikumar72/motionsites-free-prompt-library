@@ -58,10 +58,6 @@ export function getBackgroundItems(items: readonly CatalogItem[] = catalogItems,
   return typeof limit === "number" ? backgrounds.slice(0, limit) : backgrounds;
 }
 
-export function canLivePreview(item: CatalogItem) {
-  return item.access === "free" && item.prompt.trim().length > 0;
-}
-
 export function findCatalogItemBySlug(slug: string | undefined) {
   if (!slug) return undefined;
   return catalogItems.find((item) => item.slug === slug);

@@ -82,6 +82,10 @@ const publicPreviewOverrides = {
   "vertex-ai-hero": ["https://motionsites.ai/assets/hero-vertex-ai-poster-DEZfbTg3.png", "https://motionsites.ai/assets/hero-vertex-ai-preview-Da80y3xa.gif"],
 };
 
+const localPosterOverrides = {
+  "celestia-hero": "/assets/celestia-hero-poster.webp",
+};
+
 function slugify(value) {
   return String(value)
     .toLowerCase()
@@ -195,6 +199,11 @@ function applyPublicPreviewOverride(record, media) {
   };
 }
 
+function applyLocalPosterOverride(record, media) {
+  const posterUrl = localPosterOverrides[record.id];
+  return posterUrl ? { ...media, posterUrl } : media;
+}
+
 function sourceMode(metadata) {
   if (metadata.workingPrompt?.mode === "original") return "original";
   if (metadata.workingPrompt?.mode === "reconstructed") return "reconstructed";
@@ -208,7 +217,7 @@ function buildItem(folderName) {
   const title = record.title || record.id || folderName;
   const pageType = record.page_type || record.type || "prompt";
   const prompt = readPrompt(folderPath);
-  const media = applyPublicPreviewOverride(record, mediaFromRecord(record, prompt));
+  const media = applyLocalPosterOverride(record, applyPublicPreviewOverride(record, mediaFromRecord(record, prompt)));
 
   return {
     id: record.id || folderName,
