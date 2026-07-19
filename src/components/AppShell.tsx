@@ -6,8 +6,8 @@ import { catalogSummary } from "../data/prompts.generated";
 import { LiroMark } from "./LiroMark";
 
 const navItems = [
-  { label: "Sections", to: "/landing-pages", badge: "Free" },
-  { label: "Backgrounds", to: "/backgrounds", badge: "Free" },
+  { label: "Sections", to: "/landing-pages" },
+  { label: "Backgrounds", to: "/backgrounds" },
   { label: "Gradients", to: "/gradients" },
   { label: "Contact Us", to: "/contact" },
 ];
@@ -31,7 +31,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </span>
             <span className="leading-none">
               <span className="block text-[21px] font-black lowercase tracking-[-0.05em] text-white">liro.prompt</span>
-              <span className="sr-only">Free Library</span>
+              <span className="sr-only">Prompt Library</span>
             </span>
           </NavLink>
 
@@ -48,12 +48,6 @@ export function AppShell({ children }: { children: ReactNode }) {
                 }
               >
                 {item.label}
-                {"badge" in item && item.badge ? (
-                  <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-[0.12em] text-amber-200/80">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-300" aria-hidden="true" />
-                    {item.badge}
-                  </span>
-                ) : null}
               </NavLink>
             ))}
             </div>
@@ -68,7 +62,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               to="/landing-pages"
               className="inline-flex h-11 items-center gap-2 rounded-[13px] bg-white px-4 text-sm font-bold text-[#171717] shadow-[0_12px_32px_rgba(219,234,254,0.12)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
             >
-              Browse Free
+              Browse
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </NavLink>
           </div>
@@ -110,12 +104,6 @@ export function AppShell({ children }: { children: ReactNode }) {
                   className="flex min-h-16 items-center justify-between gap-3 text-2xl font-black tracking-[-0.04em] text-white transition-colors hover:text-[#d9caff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#a47cff]"
                 >
                   <span>{item.label}</span>
-                  {"badge" in item && item.badge ? (
-                    <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-amber-200/80">
-                      <span className="h-1.5 w-1.5 rounded-full bg-amber-300" aria-hidden="true" />
-                      {item.badge}
-                    </span>
-                  ) : null}
                 </NavLink>
               ))}
             </div>
@@ -124,7 +112,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               onClick={() => setMenuOpen(false)}
               className="mt-8 inline-flex h-12 items-center gap-2 rounded-[14px] bg-white px-5 text-sm font-bold text-[#171717] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a47cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
             >
-              Browse Free
+              Browse
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </NavLink>
           </div>

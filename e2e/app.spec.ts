@@ -112,7 +112,7 @@ test("mobile navigation opens and closes cleanly", async ({ page }) => {
   await page.getByRole("button", { name: /Open navigation/i }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await expect(page.getByText("Explore the library")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Backgrounds Free" })).toBeVisible();
+  await expect(page.getByRole("dialog").getByRole("link", { name: "Backgrounds" })).toBeVisible();
 
   await page.getByRole("button", { name: /Close navigation/i }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
