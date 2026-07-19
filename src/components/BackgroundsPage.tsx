@@ -1,4 +1,6 @@
+import { Expand } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { catalogItems } from "../data/prompts.generated";
 import { cardMotionStyle, resetCardPointer, updateCardPointer } from "../lib/cardMotion";
 import { getBackgroundItems } from "../lib/catalog";
@@ -28,7 +30,17 @@ export function BackgroundsPage() {
             onPointerLeave={resetCardPointer}
           >
             <div className="motion-card-sheen" aria-hidden="true" />
-            <MediaFrame item={item} className="h-[280px]" label={item.mediaType === "video" ? "Motion" : "Image"} />
+            <Link
+              to={`/backgrounds/${item.slug}`}
+              className="relative block"
+              aria-label={`Open full-screen preview for ${item.title}`}
+              title={`Open full-screen preview for ${item.title}`}
+            >
+              <MediaFrame item={item} className="h-[280px]" label={item.mediaType === "video" ? "Motion" : "Image"} />
+              <span className="pointer-events-none absolute right-3 top-3 z-50 grid h-9 w-9 place-items-center rounded-full border border-white/18 bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100">
+                <Expand className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </Link>
             <div className="relative z-20 space-y-4 p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>

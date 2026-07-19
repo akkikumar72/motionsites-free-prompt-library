@@ -1,8 +1,9 @@
 import { Menu, X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { catalogSummary } from "../data/prompts.generated";
+import { LiroMark } from "./LiroMark";
 
 const navItems = [
   { label: "Sections", to: "/landing-pages", badge: "Free" },
@@ -13,15 +14,17 @@ const navItems = [
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isPreviewRoute = pathname.startsWith("/preview/") || pathname.startsWith("/backgrounds/");
 
   return (
-    <div className="min-h-screen overflow-x-clip">
-      <header className="fixed left-0 right-0 top-0 z-40 bg-[#171717]/90 backdrop-blur-xl">
+    <div className={isPreviewRoute ? "min-h-screen overflow-x-clip bg-[#f4f4f1]" : "min-h-screen overflow-x-clip"}>
+      {!isPreviewRoute ? <header className="fixed left-0 right-0 top-0 z-40 bg-[#171717]/90 backdrop-blur-xl">
         <nav className="page-shell flex h-20 items-center justify-between gap-5">
-          <NavLink to="/" className="flex items-center gap-3" aria-label="MotionSites Free home">
-            <span className="motionsites-mark text-[34px] leading-none" aria-hidden="true">m</span>
+          <NavLink to="/" className="flex items-center gap-3" aria-label="liro.prompt home">
+            <LiroMark className="h-9 w-9" />
             <span className="leading-none">
-              <span className="block text-[22px] font-black lowercase tracking-[-0.05em]">motionsites</span>
+              <span className="block text-[22px] font-black lowercase tracking-[-0.05em]">liro.prompt</span>
               <span className="sr-only">Free Library</span>
             </span>
           </NavLink>
@@ -68,12 +71,12 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
         </nav>
-      </header>
+      </header> : null}
 
-      {menuOpen ? (
+      {!isPreviewRoute && menuOpen ? (
         <div className="fixed inset-0 z-50 bg-[#171717]/96 backdrop-blur-xl lg:hidden" role="dialog" aria-modal="true">
           <div className="page-shell flex h-20 items-center justify-between">
-            <span className="text-xl font-black lowercase tracking-[-0.05em]">motionsites</span>
+            <span className="flex items-center gap-3 text-xl font-black lowercase tracking-[-0.05em]"><LiroMark className="h-8 w-8" />liro.prompt</span>
             <button
               className="grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white"
               type="button"
@@ -98,8 +101,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       ) : null}
 
-      <main className="pt-20">{children}</main>
-      <Footer />
+      <main className={isPreviewRoute ? "min-h-screen" : "pt-20"}>{children}</main>
+      {!isPreviewRoute ? <Footer /> : null}
     </div>
   );
 }
@@ -110,11 +113,11 @@ function Footer() {
       <div className="page-shell grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <span className="motionsites-mark text-[30px] leading-none" aria-hidden="true">m</span>
-            <span className="text-xl font-black lowercase tracking-[-0.05em]">motionsites</span>
+            <LiroMark className="h-8 w-8" />
+            <span className="text-xl font-black lowercase tracking-[-0.05em]">liro.prompt</span>
           </div>
           <p className="mt-5 max-w-md text-sm leading-6 text-white/52">
-            A free prompt catalogue built from the local MotionSites archive. Copy prompts, preview references, and ship
+            A free prompt catalogue built from the local prompt archive. Copy prompts, preview references, and ship
             landing pages without paid gates.
           </p>
         </div>

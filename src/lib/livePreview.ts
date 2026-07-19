@@ -159,7 +159,7 @@ function extractSubcopy(prompt: string, title: string) {
   const sentence = prompt.match(/(?:Subtext|Subheading|supporting paragraph)[\s\S]{0,420}?([A-Z][^.\n]{45,180}\.)/i)?.[1];
   if (sentence) return cleanValue(sentence);
 
-  return `${title} rendered as a responsive MotionSites-style live preview with cinematic media, crisp hierarchy, and conversion-ready sections.`;
+  return `${title} rendered as a responsive liro.prompt live preview with cinematic media, crisp hierarchy, and conversion-ready sections.`;
 }
 
 function extractCta(prompt: string, kind: "primary" | "secondary") {

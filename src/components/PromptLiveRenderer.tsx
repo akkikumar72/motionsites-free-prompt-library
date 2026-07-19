@@ -45,8 +45,8 @@ function GenericPromptLiveRenderer({ item }: { item: CatalogItem }) {
 
   return (
     <div
-      className={`prompt-driven-preview live-preview-canvas relative isolate min-h-[820px] overflow-hidden rounded-[28px] border shadow-2xl ${
-        isLight ? "border-black/10 text-[#111]" : "border-white/10 text-white"
+      className={`prompt-driven-preview live-preview-canvas relative isolate min-h-[calc(100dvh-64px)] overflow-hidden ${
+        isLight ? "text-[#111]" : "text-white"
       }`}
       style={style}
       data-archetype={content.archetype}

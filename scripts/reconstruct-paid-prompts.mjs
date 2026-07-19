@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const archiveDir = path.resolve("motionsites-prompts");
+const archiveDir = path.resolve("liro-prompts");
 const rawPath = path.join(archiveDir, "raw-results.json");
 const markerStart = "<!-- RECONSTRUCTED_WORKING_PROMPT_START -->";
 const markerEnd = "<!-- RECONSTRUCTED_WORKING_PROMPT_END -->";
@@ -136,7 +136,7 @@ function pickConcept(record) {
       palette: "deep black, soft white, refined accent color, subtle gradients, glass highlights",
       scene: "cinematic abstract background, floating interface panels, strong editorial typography",
       h1: `${brand} with premium motion and clarity`,
-      sub: "A polished MotionSites-style experience with high contrast, refined layout, and conversion-ready sections.",
+      sub: "A polished liro.prompt-style experience with high contrast, refined layout, and conversion-ready sections.",
     }
   );
 }
@@ -157,7 +157,7 @@ function mediaLine(record) {
   if (record.image_preview_url) {
     return `Use the public preview image as the primary visual reference and hero visual: ${record.image_preview_url}`;
   }
-  return "No public media URL was exposed in the metadata. Reconstruct from the public card title, category, and MotionSites visual language.";
+  return "No public media URL was exposed in the metadata. Reconstruct from the public card title, category, and liro.prompt visual language.";
 }
 
 function sectionPlan(shape, concept, record) {
@@ -207,7 +207,7 @@ function reconstructedPrompt(record) {
 
   return `Build Prompt: ${record.title}
 
-Create a premium ${shape === "hero" ? "AI website hero section" : "AI landing page"} inspired by the public MotionSites preview for "${record.title}". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
+Create a premium ${shape === "hero" ? "AI website hero section" : "AI landing page"} inspired by the public liro.prompt preview for "${record.title}". This is a reconstruction from public metadata and preview media, not the original paid prompt text.
 
 Reference input
 - Prompt ID: ${record.id}
@@ -216,7 +216,7 @@ Reference input
 - Visual reference: ${mediaLine(record)}
 
 Core direction
-Build a polished, production-grade ${hasFullPage ? "single-page website" : "hero experience"} for ${concept.industry}. The design should feel like a premium MotionSites prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
+Build a polished, production-grade ${hasFullPage ? "single-page website" : "hero experience"} for ${concept.industry}. The design should feel like a premium liro.prompt prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
 
 Tech stack
 - React 18, Vite-compatible structure, Tailwind CSS, Framer Motion.
@@ -271,7 +271,7 @@ Avoid
 - Do not add irrelevant characters or random mascots.
 
 Quality bar
-The final result should look like a premium AI-generated website prompt from MotionSites: specific, visual, animated, responsive, and ready to paste into an AI website builder.`;
+The final result should look like a premium AI-generated website prompt from liro.prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.`;
 }
 
 function extractOriginalPrompt(item) {
@@ -287,7 +287,7 @@ function renderWorkingPrompt(item, prompt, mode) {
       : `# Reconstructed Working Prompt: ${record.title}`;
   const note =
     mode === "original"
-      ? "This is the original full prompt returned by the MotionSites `get-prompt` endpoint in the current session."
+      ? "This is the original full prompt returned by the liro.prompt `get-prompt` endpoint in the current session."
       : "This is not the original paid prompt. It is a practical reconstruction from the public title, category, and preview media metadata.";
 
   return `${title}
@@ -374,7 +374,7 @@ const summary = `${markerStart}
 - Working prompt files: ${data.items.length}
 - Original fetched working prompts: ${originalCount}
 - Reconstructed working prompts for paid-only items: ${reconstructedCount}
-- Important: reconstructed prompts are usable approximations, not the original paid MotionSites prompt text.
+- Important: reconstructed prompts are usable approximations, not the original paid liro.prompt prompt text.
 
 ${markerEnd}`;
 await fs.writeFile(indexPath, replaceMarkedSection(index, summary), "utf8");

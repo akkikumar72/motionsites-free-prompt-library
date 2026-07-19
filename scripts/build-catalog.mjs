@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
-const archiveDir = path.join(root, "motionsites-prompts");
+const archiveDir = path.join(root, "liro-prompts");
 const outFile = path.join(root, "src", "data", "prompts.generated.ts");
 const summaryFile = path.join(root, "src", "data", "catalog-summary.json");
 
@@ -218,7 +218,7 @@ function buildItem(folderName) {
     originalCategory: record.category || "Uncategorized",
     pageType,
     prompt,
-    folder: `motionsites-prompts/${folderName}`,
+    folder: `liro-prompts/${folderName}`,
     mediaType: media.mediaType,
     mediaUrl: media.mediaUrl,
     posterUrl: media.posterUrl,

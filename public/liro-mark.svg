@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="liro-gradient" x1="8" y1="6" x2="57" y2="59" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8CC6"/>
+      <stop offset="0.52" stop-color="#A47CFF"/>
+      <stop offset="1" stop-color="#7EE7FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="#202020"/>
+  <rect x="5" y="5" width="54" height="54" rx="15" fill="url(#liro-gradient)"/>
+  <path d="M22 18V37.5C22 43.299 26.701 48 32.5 48H44" stroke="#171717" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="32" cy="20" r="4" fill="#171717"/>
+</svg>

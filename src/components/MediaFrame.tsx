@@ -15,21 +15,23 @@ export function MediaFrame({
   className = "",
   compact = false,
 }: {
-  item: Pick<CatalogItem, "title" | "posterUrl" | "animatedUrl" | "mediaType" | "mediaUrl" | "sortOrder" | "category">;
+  item: Pick<CatalogItem, "slug" | "title" | "posterUrl" | "animatedUrl" | "mediaType" | "mediaUrl" | "sortOrder" | "category">;
   label?: string;
   className?: string;
   compact?: boolean;
 }) {
   const background = fallbackGradients[item.sortOrder % fallbackGradients.length];
   const accent = fallbackAccents[item.sortOrder % fallbackAccents.length];
+  const localPoster = item.slug === "260-celestia-hero" ? "/assets/celestia-hero-poster.png" : null;
+  const posterUrl = item.posterUrl || localPoster;
 
   return (
     <div className={`relative isolate overflow-hidden bg-[#202020] ${className}`}>
       <div className="absolute inset-0 -z-10" style={{ background }} />
       <GeneratedThumb item={item} accent={accent} compact={compact} />
-      {item.posterUrl ? (
+      {posterUrl ? (
         <img
-          src={item.posterUrl}
+          src={posterUrl}
           alt=""
           className="motion-media-drift absolute inset-0 z-10 h-full w-full object-cover object-top"
           loading="lazy"
@@ -48,7 +50,7 @@ export function MediaFrame({
             event.currentTarget.style.display = "none";
           }}
         />
-      ) : item.mediaType === "video" && item.mediaUrl?.endsWith(".mp4") ? (
+      ) : !localPoster && item.mediaType === "video" && item.mediaUrl?.endsWith(".mp4") ? (
         <video
           src={item.mediaUrl}
           className="motion-media-drift absolute inset-0 z-20 h-full w-full object-cover object-top"

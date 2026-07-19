@@ -1,4 +1,4 @@
-/* Hallmark · macrostructure: Catalogue / Marquee catalogue · tone: technical · anchor hue: cool-white + small pastel mark · studied: yes · DNA-source: url https://motionsites.ai/ */
+/* Hallmark · macrostructure: Catalogue / Marquee catalogue · tone: technical · anchor hue: cool-white + small pastel mark · studied: yes */
 
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 
@@ -76,7 +76,7 @@ button {
   mask-image: linear-gradient(to bottom, black, transparent 80%);
 }
 
-.motionsites-mark {
+.liro-mark {
   background: var(--motion-pastel);
   color: transparent;
   -webkit-background-clip: text;
@@ -162,6 +162,15 @@ button {
 
 .motion-card:hover .motion-thumb-float {
   animation: thumb-float 1900ms ease-in-out infinite alternate;
+}
+
+.curated-collection {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+.preview-toolbar {
+  border-top: 2px solid #a47cff;
 }
 
 .live-preview-canvas {
