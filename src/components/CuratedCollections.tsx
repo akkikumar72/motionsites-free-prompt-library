@@ -4,21 +4,11 @@ import type { CatalogItem } from "../data/prompts.generated";
 import { cardMotionStyle, resetCardPointer, updateCardPointer } from "../lib/cardMotion";
 import { MediaFrame } from "./MediaFrame";
 
-type CollectionLayout = "feature-rail" | "editorial-split" | "bento" | "experimental";
-
-const layoutTileClasses: Record<CollectionLayout, readonly string[]> = {
-  "feature-rail": ["lg:col-span-2 lg:row-span-2", "", "", "", "", ""],
-  "editorial-split": ["lg:col-span-2 lg:row-span-2", "", "lg:row-span-2", "", "", ""],
-  bento: ["lg:col-span-2 lg:row-span-2", "", "", "lg:col-span-2", "", ""],
-  experimental: ["lg:col-span-5 lg:row-span-2", "lg:col-span-3", "lg:col-span-4", "lg:col-span-4", "lg:col-span-3", "lg:col-span-5"],
-};
-
 type CollectionDefinition = {
   id: string;
   eyebrow: string;
   title: string;
   description: string;
-  layout: CollectionLayout;
   slugs: readonly string[];
 };
 
@@ -28,7 +18,6 @@ const collectionDefinitions: readonly CollectionDefinition[] = [
     eyebrow: "Collection 01 / immersive direction",
     title: "Cinematic Journeys",
     description: "Long-form hero compositions for travel, space, and stories that need room to breathe.",
-    layout: "feature-rail",
     slugs: [
       "60-aetheris-voyage-hero",
       "999-travel-hero",
@@ -43,7 +32,6 @@ const collectionDefinitions: readonly CollectionDefinition[] = [
     eyebrow: "Collection 02 / art direction",
     title: "Editorial Studios",
     description: "Confident typography, deliberate contrast, and agency systems built to make the work feel authored.",
-    layout: "editorial-split",
     slugs: [
       "25-prisma-landing",
       "20-bold-studio",
@@ -58,7 +46,6 @@ const collectionDefinitions: readonly CollectionDefinition[] = [
     eyebrow: "Collection 03 / product systems",
     title: "Bento Products",
     description: "Modular product stories with clear hierarchy, flexible surfaces, and enough density to sell the system.",
-    layout: "bento",
     slugs: [
       "70-codercrest-hero",
       "480-nexora-hero",
@@ -73,7 +60,6 @@ const collectionDefinitions: readonly CollectionDefinition[] = [
     eyebrow: "Collection 04 / unconventional systems",
     title: "Experimental Worlds",
     description: "Web3, portfolio, and future-facing references for pages that should feel more like an environment than a template.",
-    layout: "experimental",
     slugs: [
       "50-9",
       "180-orbis-nft-landing",
@@ -141,49 +127,37 @@ function CollectionSection({
         <p className="max-w-xl text-sm leading-6 text-white/48 sm:text-right">{collection.description}</p>
       </div>
 
-      <CollectionGrid layout={collection.layout} items={collection.items} />
+      <CollectionGrid items={collection.items} />
     </section>
   );
 }
 
 function CollectionGrid({
-  layout,
   items,
 }: {
-  layout: CollectionLayout;
   items: CatalogItem[];
 }) {
   return (
-    <div className="curated-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-layout={layout}>
-      {items.map((item, index) => (
-        <CollectionTile
-          key={item.slug}
-          item={item}
-          className={layoutTileClasses[layout][index] || ""}
-        />
+    <div className="curated-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((item) => (
+        <CollectionTile key={item.slug} item={item} />
       ))}
     </div>
   );
 }
 
-function CollectionTile({
-  item,
-  className = "",
-}: {
-  item: CatalogItem;
-  className?: string;
-}) {
+function CollectionTile({ item }: { item: CatalogItem }) {
   return (
     <article
-      className={`collection-tile motion-card group relative isolate overflow-hidden rounded-[18px] bg-[#262626] ${className}`}
+      className="catalog-card collection-tile motion-card group relative isolate flex aspect-square overflow-hidden rounded-[18px] bg-[#262626]"
       style={cardMotionStyle}
       onPointerMove={updateCardPointer}
       onPointerLeave={resetCardPointer}
     >
       <div className="motion-card-sheen" aria-hidden="true" />
-      <Link to={`/preview/${item.slug}`} className="relative z-10 block text-left" aria-label={`Preview ${item.title}`}>
-        <MediaFrame item={item} className="aspect-[1.58/1] w-full" compact />
-        <div className="relative flex items-start justify-between gap-3 p-4 sm:p-5">
+      <Link to={`/preview/${item.slug}`} className="relative z-10 flex h-full min-h-0 w-full flex-col text-left" aria-label={`Preview ${item.title}`}>
+        <MediaFrame item={item} className="min-h-0 flex-1 w-full" compact />
+        <div className="relative flex min-h-[88px] shrink-0 items-center justify-between gap-3 p-4 sm:p-5">
           <div className="min-w-0">
             <h4 className="truncate text-lg font-black leading-6 tracking-[-0.035em] text-white">{item.title}</h4>
             <p className="mt-1 truncate text-[11px] font-black uppercase tracking-[0.15em] text-white/40">{item.originalCategory || item.category}</p>

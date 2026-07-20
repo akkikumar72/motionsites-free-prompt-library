@@ -33,6 +33,13 @@ test("homepage, catalogue, dedicated preview, and copy actions work", async ({ p
   await expect(page.getByRole("button", { name: /Copied/i })).toBeVisible();
 });
 
+test("uses SF Pro as the global application font", async ({ page }) => {
+  await page.goto("/");
+
+  const fontFamily = await page.locator("body").evaluate((element) => getComputedStyle(element).fontFamily);
+  expect(fontFamily).toContain("SF Pro");
+});
+
 test("original free prompts open live preview routes", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
@@ -124,21 +131,20 @@ test("mobile navigation opens and closes cleanly", async ({ page }) => {
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
 
-test("curated collections use their declared layout rhythm", async ({ page }) => {
-  await page.goto("/landing-pages");
+test("home and landing catalogue cards keep a uniform square footprint", async ({ page }) => {
+  for (const route of ["/", "/landing-pages"]) {
+    await page.goto(route);
+    const cards = await page.locator(".catalog-card").evaluateAll((elements) =>
+      elements.map((element) => {
+        const rect = element.getBoundingClientRect();
+        return { width: Math.round(rect.width), height: Math.round(rect.height) };
+      }),
+    );
 
-  const gridLayout = await page.evaluate(() => ({
-    grids: Array.from(document.querySelectorAll<HTMLElement>(".curated-grid")).map((grid) => ({
-      layout: grid.dataset.layout,
-      columns: getComputedStyle(grid).gridTemplateColumns.split(" ").length,
-    })),
-    viewportWidth: window.innerWidth,
-  }));
-
-  expect(gridLayout.grids.map(({ layout }) => layout)).toEqual(["feature-rail", "editorial-split", "bento", "experimental"]);
-  expect(gridLayout.grids.map(({ columns }) => columns)).toEqual(
-    gridLayout.viewportWidth >= 1024 ? [3, 3, 4, 12] : [1, 1, 1, 1],
-  );
+    expect(cards.length).toBeGreaterThan(0);
+    expect(new Set(cards.map(({ width, height }) => `${width}x${height}`)).size).toBe(1);
+    expect(cards.every(({ width, height }) => width === height)).toBe(true);
+  }
 });
 
 test("Celestia uses a local poster when its source video is unavailable", async ({ page }) => {
