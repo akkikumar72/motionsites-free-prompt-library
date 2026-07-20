@@ -37,7 +37,7 @@ const fadeIn = {
 
 export function AetherisVoyagePreview() {
   return (
-    <div className="aetheris-preview overflow-hidden rounded-[28px] border border-white/10 bg-black text-white shadow-2xl">
+    <div className="aetheris-preview overflow-hidden bg-black text-white">
       <section className="relative flex min-h-[900px] flex-col overflow-hidden bg-black">
         <FadingVideo src={heroVideo} className="absolute left-1/2 top-0 z-0 h-[120%] w-[120%] -translate-x-1/2 object-cover object-top" />
 

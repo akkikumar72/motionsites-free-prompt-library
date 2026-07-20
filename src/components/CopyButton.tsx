@@ -11,7 +11,7 @@ export function CopyButton({
   text: string;
   label?: string;
   copiedLabel?: string;
-  variant?: "default" | "gradient";
+  variant?: "default" | "gradient" | "toolbar";
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -28,7 +28,9 @@ export function CopyButton({
       className={
         variant === "gradient"
           ? "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-cta-gradient px-5 text-[12px] font-black uppercase tracking-[0.12em] text-[#171717] shadow-[0_16px_45px_rgba(219,234,254,0.14)] transition-transform hover:-translate-y-0.5"
-          : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
+          : variant === "toolbar"
+            ? "inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-cta-gradient px-5 text-sm font-semibold text-white shadow-glow transition-transform hover:-translate-y-0.5"
+            : "inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#303030] px-4 text-sm font-semibold text-[#ababab] transition-colors hover:bg-[#3a3a3a] hover:text-white"
       }
       aria-live="polite"
     >

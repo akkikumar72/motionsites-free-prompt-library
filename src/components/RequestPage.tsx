@@ -16,7 +16,7 @@ export function RequestPage({ contactMode = false }: { contactMode?: boolean }) 
             event.preventDefault();
             const form = event.currentTarget;
             const data = new FormData(form);
-            const subject = encodeURIComponent(String(data.get("title") || "MotionSites prompt request"));
+            const subject = encodeURIComponent(String(data.get("title") || "liro.prompt request"));
             const body = encodeURIComponent(String(data.get("details") || ""));
             window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
           }}

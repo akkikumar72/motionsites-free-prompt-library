@@ -1,18 +1,20 @@
-# MotionSites Free Prompt Library
+# liro.prompt
 
-A polished, free prompt catalog inspired by the MotionSites browsing experience. It turns the local `motionsites-prompts` archive into a dark, media-heavy React app with animated prompt cards, copy actions, filters, backgrounds, gradients, and prompt-driven live previews.
+A polished, free prompt catalog for liro.prompt. It turns the local `liro-prompts` archive into a dark, media-heavy React app with animated prompt cards, copy actions, filters, backgrounds, gradients, and prompt-driven live previews.
 
-> This project is an independent prompt-library UI. It is not affiliated with MotionSites. Reconstructed prompts are practical working recreations from public metadata/media, not original paid prompt text.
+> Reconstructed prompts are practical working recreations from public metadata/media, not original paid prompt text.
+
+> **Source provenance:** Original prompt records were fetched from the MotionSites `get-prompt` endpoint during the captured research session. Reconstructed records are clearly marked approximations based on public titles, categories, and preview references. This catalogue is an independent project and does not claim affiliation with MotionSites. Review the source product's terms and asset rights before redistributing the archive or externally hosted media.
 
 ![Home page](docs/screenshots/home.png)
 
 ## Features
 
-- 253 catalog items generated from `motionsites-prompts`
+- 253 catalog items generated from `liro-prompts`
 - Every item is free to inspect, copy, and preview
-- Animated MotionSites-style gallery cards with media fallbacks
+- Animated media-first gallery cards with media fallbacks
 - Category filters, search, and pagination
-- Preview modal with source label, media, prompt text, copy action, and live preview link
+- Dedicated preview route with source label, prompt drawer, media action, and copy control
 - Prompt-driven `/preview/:slug` renderer that adapts brand, headline, colors, media, cards, stats, and layout archetype from each prompt
 - Dedicated pages for landing pages, media backgrounds, and generated CSS gradients
 - Desktop and mobile Playwright coverage
@@ -21,11 +23,11 @@ A polished, free prompt catalog inspired by the MotionSites browsing experience.
 
 ### Catalog
 
-![Catalog grid](docs/screenshots/catalog.png)
+![Catalog grid](docs/screenshots/catalog.webp)
 
-### Prompt Modal
+### Prompt Drawer
 
-![Prompt modal](docs/screenshots/prompt-modal.png)
+![Prompt drawer](docs/screenshots/prompt-drawer.png)
 
 ### Live Preview
 
@@ -80,7 +82,7 @@ The app data is generated from the local archive:
 npm run generate:catalog
 ```
 
-This reads `motionsites-prompts/*/metadata.json` and `working-prompt.md`, then writes `src/data/prompts.generated.ts` and `src/data/catalog-summary.json`.
+This reads `liro-prompts/*/metadata.json` and `working-prompt.md`, then writes `src/data/prompts.generated.ts` and `src/data/catalog-summary.json`.
 
 All generated catalog items are normalized to `access: "free"`. The UI still preserves `sourceMode` internally:
 
@@ -89,10 +91,10 @@ All generated catalog items are normalized to `access: "free"`. The UI still pre
 
 ## Extractor Note
 
-The historical extractor is kept in `scripts/extract-motionsites-prompts.mjs`, but it requires explicit environment variables and is not needed to run the app:
+The historical extractor is kept in `scripts/extract-liro-prompts.mjs`, but it requires explicit environment variables and is not needed to run the app:
 
 ```bash
-MOTIONSITES_SUPABASE_URL=... MOTIONSITES_SUPABASE_ANON_KEY=... node scripts/extract-motionsites-prompts.mjs
+LIRO_SUPABASE_URL=... LIRO_SUPABASE_ANON_KEY=... node scripts/extract-liro-prompts.mjs
 ```
 
 ## Verification

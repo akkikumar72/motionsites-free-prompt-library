@@ -1,17 +1,14 @@
-import { ArrowRight, Rocket } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { catalogItems, catalogSummary, type CatalogItem } from "../data/prompts.generated";
+import { catalogItems, catalogSummary } from "../data/prompts.generated";
 import { gradientPacks } from "../data/gradients";
 import { getBackgroundItems, getFeaturedItems } from "../lib/catalog";
 import { CopyButton } from "./CopyButton";
 import { MediaFrame } from "./MediaFrame";
 import { PromptGrid } from "./PromptGrid";
-import { PromptModal } from "./PromptModal";
 import { SectionHeader } from "./SectionHeader";
 
 export function HomePage() {
-  const [selected, setSelected] = useState<CatalogItem | null>(null);
   const featured = getFeaturedItems(catalogItems, 9);
   const backgrounds = getBackgroundItems(catalogItems, 6);
 
@@ -21,12 +18,6 @@ export function HomePage() {
         <div className="scene-grid absolute inset-x-0 top-0 -z-10 h-[560px] opacity-45" />
         <div className="page-shell flex min-h-[430px] flex-col justify-center py-10 md:min-h-[500px]">
           <div className="mx-auto max-w-3xl text-center">
-            <a
-              href="https://designrocket.io/"
-              className="mb-3 inline-flex items-center gap-2 text-sm font-bold text-[#ababab] transition-colors hover:text-white"
-            >
-              Powered by <Rocket className="h-4 w-4 text-[#f97316]" aria-hidden="true" /> Design Rocket
-            </a>
             <h1 className="text-[clamp(2.4rem,5.1vw,4.7rem)] font-black uppercase leading-[0.86] tracking-[-0.055em] text-[#f5f5f5]">
               Unlock your AI
               <span className="motion-hero-gradient block">Design Superpowers</span>
@@ -84,7 +75,7 @@ export function HomePage() {
           title="Landing page prompts"
           copy="Every card is free to inspect and copy. Original prompts and reconstructed working prompts are treated as usable launch material."
         />
-        <PromptGrid items={featured} onPreview={setSelected} />
+        <PromptGrid items={featured} />
       </section>
 
       <section className="page-shell py-12">
@@ -130,8 +121,6 @@ export function HomePage() {
           ))}
         </div>
       </section>
-
-      <PromptModal item={selected} onClose={() => setSelected(null)} />
     </>
   );
 }

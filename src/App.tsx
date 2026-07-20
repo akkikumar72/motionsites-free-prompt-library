@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AppShell } from "./components/AppShell";
 import { BackgroundsPage } from "./components/BackgroundsPage";
+import { BackgroundPreviewPage } from "./components/BackgroundPreviewPage";
 import { GradientsPage } from "./components/GradientsPage";
 import { HomePage } from "./components/HomePage";
 import { LandingPagesPage } from "./components/LandingPagesPage";
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/landing-pages" element={<LandingPagesPage />} />
         <Route path="/preview/:slug" element={<LivePreviewPage />} />
+        <Route path="/backgrounds/:slug" element={<BackgroundPreviewPage />} />
         <Route path="/backgrounds" element={<BackgroundsPage />} />
         <Route path="/gradients" element={<GradientsPage />} />
         <Route path="/request" element={<RequestPage />} />

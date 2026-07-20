@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const archiveDir = path.resolve("motionsites-prompts");
+const archiveDir = path.resolve("liro-prompts");
 const rawPath = path.join(archiveDir, "raw-results.json");
 const markerStart = "<!-- RECONSTRUCTED_WORKING_PROMPT_START -->";
 const markerEnd = "<!-- RECONSTRUCTED_WORKING_PROMPT_END -->";
@@ -157,7 +157,7 @@ function mediaLine(record) {
   if (record.image_preview_url) {
     return `Use the public preview image as the primary visual reference and hero visual: ${record.image_preview_url}`;
   }
-  return "No public media URL was exposed in the metadata. Reconstruct from the public card title, category, and MotionSites visual language.";
+  return "No public media URL was exposed in the metadata. Reconstruct from the public card title, category, and source visual language.";
 }
 
 function sectionPlan(shape, concept, record) {
@@ -216,7 +216,7 @@ Reference input
 - Visual reference: ${mediaLine(record)}
 
 Core direction
-Build a polished, production-grade ${hasFullPage ? "single-page website" : "hero experience"} for ${concept.industry}. The design should feel like a premium MotionSites prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
+Build a polished, production-grade ${hasFullPage ? "single-page website" : "hero experience"} for ${concept.industry}. The design should feel like a premium AI website prompt: cinematic composition, large confident typography, high contrast, strong negative space, glassy interface surfaces, careful micro-interactions, and an immediate first-viewport brand signal.
 
 Tech stack
 - React 18, Vite-compatible structure, Tailwind CSS, Framer Motion.
@@ -271,7 +271,7 @@ Avoid
 - Do not add irrelevant characters or random mascots.
 
 Quality bar
-The final result should look like a premium AI-generated website prompt from MotionSites: specific, visual, animated, responsive, and ready to paste into an AI website builder.`;
+The final result should look like a premium AI-generated website prompt: specific, visual, animated, responsive, and ready to paste into an AI website builder.`;
 }
 
 function extractOriginalPrompt(item) {
@@ -287,8 +287,8 @@ function renderWorkingPrompt(item, prompt, mode) {
       : `# Reconstructed Working Prompt: ${record.title}`;
   const note =
     mode === "original"
-      ? "This is the original full prompt returned by the MotionSites `get-prompt` endpoint in the current session."
-      : "This is not the original paid prompt. It is a practical reconstruction from the public title, category, and preview media metadata.";
+      ? "This is the original full prompt returned by the MotionSites `get-prompt` endpoint in the captured session."
+      : "This is not the original paid prompt. It is a practical reconstruction from the public MotionSites title, category, and preview media metadata.";
 
   return `${title}
 
@@ -351,7 +351,7 @@ for (const item of data.items) {
 
 ## Reconstructed Working Prompt
 
-This is not the original paid prompt. It is a practical reconstruction from the public title, category, and preview media metadata.
+This is not the original paid prompt. It is a practical reconstruction from the public MotionSites title, category, and preview media metadata.
 
 \`\`\`
 ${prompt.trim()}

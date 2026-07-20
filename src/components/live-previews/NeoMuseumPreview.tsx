@@ -52,7 +52,7 @@ export function NeoMuseumPreview() {
   const chapterNumber = useMemo(() => String(activeChapter + 1).padStart(2, "0"), [activeChapter]);
 
   return (
-    <div className="neo-museum-preview overflow-hidden rounded-[28px] border border-white/10 bg-[#fcfcfc] font-nhm-sans text-[#111] shadow-2xl">
+    <div className="neo-museum-preview overflow-hidden bg-[#fcfcfc] font-nhm-sans text-[#111]">
       <section className="relative flex min-h-[960px] w-full flex-col overflow-hidden bg-[#fcfcfc]">
         <motion.header
           className="relative z-20 px-6 pt-6 md:px-16"

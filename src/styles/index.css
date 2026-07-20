@@ -1,4 +1,4 @@
-/* Hallmark · macrostructure: Catalogue / Marquee catalogue · tone: technical · anchor hue: cool-white + small pastel mark · studied: yes · DNA-source: url https://motionsites.ai/ */
+/* Hallmark · macrostructure: Catalogue / Marquee catalogue · tone: technical · anchor hue: cool-white + small pastel mark · studied: yes */
 
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 
@@ -21,7 +21,8 @@
   --text-muted: #ababab;
   --gradient-cta-from: #ffffff;
   --gradient-cta-to: #dbeafe;
-  --max-content: 1216px;
+  --font-sf-pro: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --max-content: 1360px;
   --page-padding: 32px;
   --motion-pastel: linear-gradient(135deg, #ff8cc6 0%, #a47cff 45%, #7ee7ff 100%);
 }
@@ -44,13 +45,14 @@ body {
   overflow-y: auto;
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sf-pro);
   text-rendering: geometricPrecision;
 }
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
@@ -76,7 +78,7 @@ button {
   mask-image: linear-gradient(to bottom, black, transparent 80%);
 }
 
-.motionsites-mark {
+.liro-mark {
   background: var(--motion-pastel);
   color: transparent;
   -webkit-background-clip: text;
@@ -162,6 +164,15 @@ button {
 
 .motion-card:hover .motion-thumb-float {
   animation: thumb-float 1900ms ease-in-out infinite alternate;
+}
+
+.curated-collection {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+.preview-toolbar {
+  border-top: 2px solid #a47cff;
 }
 
 .live-preview-canvas {

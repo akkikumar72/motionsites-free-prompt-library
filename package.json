@@ -1,7 +1,7 @@
 {
-  "name": "motionsites-free-library",
+  "name": "liro-prompt",
   "private": false,
-  "description": "A free MotionSites-inspired prompt catalog with animated cards, copy actions, and prompt-driven live previews.",
+  "description": "A free liro.prompt catalog with animated cards, copy actions, and prompt-driven live previews.",
   "version": "0.1.0",
   "type": "module",
   "scripts": {

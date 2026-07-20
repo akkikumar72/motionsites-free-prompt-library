@@ -3,11 +3,9 @@ import { PromptCard } from "./PromptCard";
 
 export function PromptGrid({
   items,
-  onPreview,
   emptyCopy = "No prompts match this filter.",
 }: {
   items: readonly CatalogItem[];
-  onPreview: (item: CatalogItem) => void;
   emptyCopy?: string;
 }) {
   if (items.length === 0) {
@@ -21,7 +19,7 @@ export function PromptGrid({
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {items.map((item) => (
-        <PromptCard key={item.slug} item={item} onPreview={onPreview} />
+        <PromptCard key={item.slug} item={item} />
       ))}
     </div>
   );

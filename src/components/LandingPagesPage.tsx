@@ -2,17 +2,16 @@ import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { catalogItems, type CatalogItem } from "../data/prompts.generated";
+import { catalogItems } from "../data/prompts.generated";
 import { filterCatalog, getCategoryStats, getPageTitle } from "../lib/catalog";
+import { CuratedCollections } from "./CuratedCollections";
 import { PromptGrid } from "./PromptGrid";
-import { PromptModal } from "./PromptModal";
 import { SectionHeader } from "./SectionHeader";
 
 const PAGE_SIZE = 24;
 
 export function LandingPagesPage() {
   const [params, setParams] = useSearchParams();
-  const [selected, setSelected] = useState<CatalogItem | null>(null);
   const [query, setQuery] = useState("");
   const activeCategory = params.get("category") || "All";
   const [page, setPage] = useState(1);
@@ -69,7 +68,9 @@ export function LandingPagesPage() {
           </label>
         </div>
 
-        <PromptGrid items={visible} onPreview={setSelected} />
+        {page === 1 && !query && activeCategory === "All" ? <CuratedCollections items={filtered} /> : null}
+
+        <PromptGrid items={visible} />
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <PageButton disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>
@@ -85,7 +86,6 @@ export function LandingPagesPage() {
           </PageButton>
         </div>
       </section>
-      <PromptModal item={selected} onClose={() => setSelected(null)} />
     </>
   );
 }

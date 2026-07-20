@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
-const archiveDir = path.join(root, "motionsites-prompts");
+const archiveDir = path.join(root, "liro-prompts");
 const outFile = path.join(root, "src", "data", "prompts.generated.ts");
 const summaryFile = path.join(root, "src", "data", "catalog-summary.json");
 
@@ -80,6 +80,10 @@ const publicPreviewOverrides = {
   "orbit-web3-hero": ["https://motionsites.ai/assets/hero-orbit-web3-poster-CsiRb_pp.png", "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif"],
   "apex-saas-hero": ["https://motionsites.ai/assets/hero-apex-saas-poster-CZ6BkKIa.png", "https://motionsites.ai/assets/hero-apex-saas-preview-CbnBKSPv.gif"],
   "vertex-ai-hero": ["https://motionsites.ai/assets/hero-vertex-ai-poster-DEZfbTg3.png", "https://motionsites.ai/assets/hero-vertex-ai-preview-Da80y3xa.gif"],
+};
+
+const localPosterOverrides = {
+  "celestia-hero": "/assets/celestia-hero-poster.webp",
 };
 
 function slugify(value) {
@@ -195,6 +199,11 @@ function applyPublicPreviewOverride(record, media) {
   };
 }
 
+function applyLocalPosterOverride(record, media) {
+  const posterUrl = localPosterOverrides[record.id];
+  return posterUrl ? { ...media, posterUrl } : media;
+}
+
 function sourceMode(metadata) {
   if (metadata.workingPrompt?.mode === "original") return "original";
   if (metadata.workingPrompt?.mode === "reconstructed") return "reconstructed";
@@ -208,7 +217,7 @@ function buildItem(folderName) {
   const title = record.title || record.id || folderName;
   const pageType = record.page_type || record.type || "prompt";
   const prompt = readPrompt(folderPath);
-  const media = applyPublicPreviewOverride(record, mediaFromRecord(record, prompt));
+  const media = applyLocalPosterOverride(record, applyPublicPreviewOverride(record, mediaFromRecord(record, prompt)));
 
   return {
     id: record.id || folderName,
@@ -218,7 +227,7 @@ function buildItem(folderName) {
     originalCategory: record.category || "Uncategorized",
     pageType,
     prompt,
-    folder: `motionsites-prompts/${folderName}`,
+    folder: `liro-prompts/${folderName}`,
     mediaType: media.mediaType,
     mediaUrl: media.mediaUrl,
     posterUrl: media.posterUrl,
